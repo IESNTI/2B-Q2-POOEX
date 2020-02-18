@@ -5,7 +5,8 @@ function createUsers() {
     while read p; do
         username=$(echo "$p" | cut -d"$separator" -f 1)
         password=$(echo "$p" | cut -d"$separator" -f 2)
-        echo $password | passwd $username --stdin
+        useradd $username
+        echo ""$username":"$password"" | chpasswd
     done <./$1
 }
 
